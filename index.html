@@ -75,18 +75,22 @@
       transform: translateY(0);
     }
   }
+  
+  .star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: twinkle 2s infinite alternate;
+}
 
-  @keyframes float {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-  }
-
-  .emoji {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0.8;
-    animation: float 6s linear infinite;
-  }
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.3; transform: scale(0.8); }
+}
 </style>
 </head>
 <body>
@@ -200,8 +204,7 @@
       delay += 4000;
     });
 
-    spawnEmojis();
-    setInterval(spawnEmojis, 4000);
+    spawnStars(); 
 
     audio.addEventListener('ended', () => {
       const endModal = document.getElementById("endModal");
@@ -231,20 +234,23 @@
 
   }
 
-  function spawnEmojis() {
-    const emojis = ["💖", "🌸", "✨", "💅", "💫", "😂", "🌈", "🤍"];
-    for (let i = 0; i < 10; i++) {
-      const e = document.createElement("div");
-      e.className = "emoji";
-      e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      e.style.left = Math.random() * 100 + "vw";
-      e.style.animationDuration = (4 + Math.random() * 4) + "s";
-      document.body.appendChild(e);
-      setTimeout(() => e.remove(), 8000);
-    }
+  function spawnStars() {
+  const numStars = 50; // number of stars on screen
+  const body = document.body;
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.width = star.style.height = (2 + Math.random() * 4) + "px";
+    star.style.animationDuration = (1 + Math.random() * 2) + "s"; // random twinkle speed
+    body.appendChild(star);
   }
+}
 </script>
 
 </body>
 </html>
+
 
