@@ -12,14 +12,16 @@
     animation: gradientShift 12s ease infinite;
     font-family: "Poppins", "Comic Sans MS", sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
     text-align: center;
     color: #444;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 
   @keyframes gradientShift {
@@ -91,9 +93,12 @@
 
   <h1>Hey Partner in Crime 💕</h1>
   <button onclick="startSong()">🎵 Start Song</button>
-  <p id="volume-reminder" style="color:#555; font-style:italic;">🔊 Turn your volume up bitch</p>
+  <p id="volume-reminder" style="color:#555; font-style:italic;">🔊 Turn your volume up before you blame me later 😌🎧</p>
 
+<div class="lyrics-container">
   <div class="lyrics" id="lyrics"></div>
+</div>
+
 
 <div id="endModal" style="
   display: none;
@@ -162,7 +167,7 @@
     "Yeah I miss you, my chaos twin",
     "Same Jokes, same grin 💕",
     "If ever you’re down, remember this line:",
-    "You’re never alone your Partner in crime 💫",
+    "You’re never alone Partner in crime 💫",
     "Insha Allah we’ll meet soon 🥹"
   ];
 
@@ -242,3 +247,4 @@
 
 </body>
 </html>
+
